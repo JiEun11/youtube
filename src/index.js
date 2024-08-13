@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import NotFound from './pages/NotFound';
 import Videos from './pages/Videos';
 import VideoDetail from './pages/VideoDetail';
-
+import './index.css';
 
 
 const router = createBrowserRouter([
