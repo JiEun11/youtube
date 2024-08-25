@@ -2,16 +2,14 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import VideoCard from './VideoCard';
-import axios from 'axios';
 import ErrorPage from './ErrorPage';
+import { search } from '../api/youtube';
 
 function Videos() {
   const { keyword } = useParams();
   const {isLoading, error, data: videos} = useQuery({
     queryKey: ["videos", keyword],
-    queryFn: () =>
-      axios.get(`/videos/${keyword ? "search" : "popular"}.json`)
-        .then((res) => res.data.items),
+    queryFn: () => search(keyword),
   });
   return (
     <>
