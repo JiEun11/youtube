@@ -5,13 +5,14 @@ import VideoCard from './VideoCard';
 import ErrorPage from './ErrorPage';
 import FakeYoutube from '../api/fakeYoutube';
 import Youtube from '../api/youtube';
+import { useYoutubeApi } from '../context/YoutubeApiContext';
 
 function Videos() {
   const { keyword } = useParams();
+  const {youtube} = useYoutubeApi();
   const {isLoading, error, data: videos} = useQuery({
     queryKey: ["videos", keyword],
     queryFn: () => {
-      const youtube = new Youtube();
       return youtube.search(keyword);
     },
   });
