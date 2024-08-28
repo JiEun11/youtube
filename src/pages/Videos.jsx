@@ -4,13 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 import VideoCard from './VideoCard';
 import ErrorPage from './ErrorPage';
 import FakeYoutube from '../api/fakeYoutube';
+import Youtube from '../api/youtube';
 
 function Videos() {
   const { keyword } = useParams();
   const {isLoading, error, data: videos} = useQuery({
     queryKey: ["videos", keyword],
     queryFn: () => {
-      const youtube = new FakeYoutube();
+      const youtube = new Youtube();
       return youtube.search(keyword);
     },
   });
