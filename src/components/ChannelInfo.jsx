@@ -1,9 +1,21 @@
 import React from 'react'
+import { useYoutubeApi } from '../context/YoutubeApiContext';
+import { useQuery } from '@tanstack/react-query';
+import ErrorPage from '../pages/ErrorPage';
 
-function ChannelInfo({id, name}) {
+export default function ChannelInfo({id, name}) {
+  const { youtube } = useYoutubeApi();
+  const { data: url } = useQuery({
+    queryKey: ["channel", id],
+    queryFn: () => {
+      return youtube.channelImageUrl(id);
+    },
+  });
+
   return (
-    <div>{name}</div>
+    <div>
+      {url && <img src={url} alt={name}/> }
+      <p>{name}</p>
+    </div>
   )
 }
-
-export default ChannelInfo

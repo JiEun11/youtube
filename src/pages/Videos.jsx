@@ -1,9 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import VideoCard from './VideoCard';
+
 import ErrorPage from './ErrorPage';
 import { useYoutubeApi } from '../context/YoutubeApiContext';
+import VideoCard from '../components/VideoCard';
 
 function Videos() {
   const { keyword } = useParams();
@@ -16,7 +17,6 @@ function Videos() {
   });
   return (
     <>
-      <div>Videos {keyword ? `${keyword}` : `hot`} </div>
       {isLoading && <p>Loading...</p>}
       {error && <ErrorPage />}
       {videos && 

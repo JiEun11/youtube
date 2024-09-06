@@ -16,7 +16,7 @@ function VideoDetail() {
           width='100%'
           height='640'
           src={`http://www.youtube.com/embed/${video.id}`}
-          frameZBorder='0'
+          frameBorder='0'
         />
         <div>
           <h2>{title}</h2>
